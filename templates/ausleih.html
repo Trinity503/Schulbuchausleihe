@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container text-center">
+  <div class="row">
+    <div class="col">
+    </div>
+    <div class="col-6">
+        <form method="post">
+            <div class="mb-3">
+                <label for="frist" class="form-label">Frist</label>
+                <input name="ausleih" type="text" class="form-control" id="frist" aria-describedby="frist">
+            </div>
+            <div class="mb-3">
+                <label for="ausweisid" class="form-label">Ausweis ID</label>
+                <input name="ausleih" type="text" class="form-control" id="ausweisid">
+            </div>
+            <div class="mb-3">
+                <label for="buchid" class="form-label">Buch ID</label>
+                <input name="ausleih" type="text" class="form-control" id="buchid">
+            </div>
+            <div class="mb-3">
+                <input name="ausleih" type="checkbox" class="form-check-input" id="frist" aria-describedby="rückgabe">
+                <label for="rückgabe" class="form-check-label">Rückgabe?</label>
+            </div>
+            <button type="submit" name="ausleih" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    <div class="col">
+    </div>
+  </div>
+</div>
+{% endblock %}
