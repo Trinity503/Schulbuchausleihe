@@ -21,3 +21,19 @@ def buch(request):
 
 def ausleih(request):
     return render(request, 'ausleih.html')
+
+def add_autor(request):
+    form = AutorForm(request.POST or None)
+    return render(request, 'add_autor.html', {'form': AutorForm()})
+
+def add_buch(request):
+    form = BuchForm(request.POST or None)
+    return render(request, 'add_buch.html', {'form': BuchForm()})
+
+def add_nutzer(request):
+    form = BibliotheksbenutzerForm(request.POST or None)
+    return render(request, 'add_nutzer.html', {'form': BibliotheksbenutzerForm()})
+
+def add_verlag(request):
+    form = VerlagForm(request.POST or None)
+    return render(request, 'add_verlag.html', {'form': VerlagForm()})
