@@ -140,7 +140,7 @@ def add_autor(request):
         form.save()
         messages.info(request, 'Der Autor wurde erfolgreich hinzugefügt!', extra_tags='message is-success')
         return redirect(reverse('index'))
-    elif not form.is_valid():
+    elif request.method == 'POST' and not form.is_valid():
         messages.info(request, 'Ups, da fehlt noch was!', extra_tags='message is-danger')
     return render(request, 'add.html', {'form': AutorForm()})
 
@@ -150,7 +150,7 @@ def add_buch(request):
         form.save()
         messages.info(request, 'Das Buch wurde erfolgreich hinzugefügt!', extra_tags='message is-success')
         return redirect(reverse('buch'))
-    elif not form.is_valid():
+    elif request.method == 'POST' and not form.is_valid():
         messages.info(request, 'Ups, da fehlt noch was!', extra_tags='message is-danger')
     return render(request, 'add.html', {'form': BuchForm()})
 
@@ -160,7 +160,7 @@ def add_nutzer(request):
         form.save()
         messages.info(request, 'Der Nutzer wurde erfolgreich hinzugefügt!', extra_tags='message is-success')
         return redirect(reverse('nutzer'))
-    elif not form.is_valid():
+    elif request.method == 'POST' and not form.is_valid():
         messages.info(request, 'Ups, da fehlt noch was!', extra_tags='message is-danger')
     return render(request, 'add.html', {'form': BibliotheksbenutzerForm()})
 
@@ -170,7 +170,7 @@ def add_verlag(request):
         form.save()
         messages.info(request, 'Der Verlag wurde erfolgreich hinzugefügt!', extra_tags='message is-success')
         return redirect(reverse('buch'))
-    elif not form.is_valid():
+    elif request.method == 'POST' and not form.is_valid():
         messages.info(request, 'Ups, da fehlt noch was!', extra_tags='message is-danger')
     return render(request, 'add.html', {'form': VerlagForm()})
 

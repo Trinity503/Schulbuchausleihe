@@ -45,6 +45,7 @@ class Buch(models.Model):
     genre = models.CharField(max_length=64)
     jahr = models.IntegerField()
     autor = models.ManyToManyField(Autor)
+    ausgeliehen = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.titel}"
@@ -54,9 +55,9 @@ class Buch(models.Model):
 
 
 class Ausleihe(models.Model):
-    buchID = models.ForeignKey(Buch, on_delete=models.CASCADE)
+    buchID = models.ForeignKey(Buch,on_delete=models.CASCADE)
     bibliotheksbenutzerID = models.ForeignKey(Bibliotheksbenutzer, on_delete=models.CASCADE)
-    frist = models.IntegerField()
+    frist = models.CharField(max_length=4, default="30")
     ausleihdatum = models.DateField(auto_now_add=True)
     rueckgabedatum = models.DateField(null=True, blank=True)
 

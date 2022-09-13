@@ -1,0 +1,221 @@
+{% extends "base.html" %}
+{% block content %}
+    <br>
+    <br>
+    <br>
+<div class="columns is-centered">
+    <div class="column is-2">
+        <figure class="image is-128x128">
+            {% load static %}
+            {% if ansicht == "buch" %}
+                <img class="detail__img" src="{% static 'img/buch.png' %}" alt="My image">
+            {% elif ansicht == "autor" %}
+                <img class="detail__img" src="{% static 'img/nutzer.png' %}" alt="My image">
+            {% elif ansicht == "nutzer" %}
+                <img class="detail__img" src="{% static 'img/nutzer.png' %}" alt="My image">
+            {% endif %}
+        </figure>
+    </div>
+    <div class="column is-4">
+
+    {% if ansicht == "buch" %}
+        <article class="tile is-ancestor">
+            <article class="tile box">
+                <h1 class="title">{{ buch.titel }}</h1>
+            </article>
+        </article>
+        <div class="tile is-ancestor box is-vertical">
+            <div class="tile is-parent">
+                <div class="tile is-child">
+                    <h3 class="title is-5">ISBN:</h3>
+                </div>
+                <div class="tile is-child">
+                    <h4>{{ buch.isbn }}</h4>
+                </div>
+            </div>
+            <div class="tile is-parent">
+                <div class="tile is-child">
+                    <h3 class="title is-5">Autor:</h3>
+                </div>
+                <div class="tile is-child">
+                    <a href="{% url "autor_detail" autor.id %}"><h4>{{ autor.vorname }} {{ autor.nachname }}</h4></a>
+                </div>
+            </div>
+            <div class="tile is-parent">
+                <div class="tile is-child">
+                    <h3 class="title is-5">Jahr:</h3>
+                </div>
+                <div class="tile is-child">
+                    <h4>{{ buch.jahr }}</h4>
+                </div>
+            </div>
+            <div class="tile is-parent">
+                <div class="tile is-child">
+                    <h3 class="title is-5">Genre:</h3>
+                </div>
+                <div class="tile is-child">
+                    <h4>{{ buch.genre }}</h4>
+                </div>
+            </div>
+            <div class="tile is-parent">
+                <div class="tile is-child">
+                    <h3 class="title is-5">Verlag:</h3>
+                </div>
+                <div class="tile is-child">
+                    <a href="{% url 'verlag' buch.verlag_id %}">{{ buch.verlag }}</a>
+                </div>
+            </div>
+            <div class="tile is-parent">
+                <div class="tile is-child">
+                    <h3 class="title is-5">Zusammenfassung:</h3>
+                </div>
+            </div>
+            <div class="tile is-parent">
+                <article class="tile is-child">
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Curabitur laoreet vehicula turpis, sodales elementum tortor rutrum vitae.
+                        Proin faucibus venenatis turpis ut euismod.
+                        Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+                        Etiam id dolor vitae velit maximus pretium. Cras semper odio sed dui convallis,
+                        non pellentesque felis blandit. Maecenas viverra mollis nibh. Aenean quis rutrum risus.
+                        Nulla rhoncus neque ligula. Suspendisse at enim odio. Nunc non molestie mi, et viverra ex.
+                        Pellentesque sit amet ullamcorper libero. Etiam eget eros vestibulum nisl iaculis
+                        tincidunt. Nam dictum aliquam mauris, vel posuere orci condimentum sit amet. Vivamus
+                        ac viverra erat.
+                    </p>
+                </article>
+            </div>
+        </div>
+    {% elif ansicht == "autor" %}
+        <div class="tile is-ancestor">
+            <article class="tile box">
+                <h1 class="title">{{ autor.vorname }} {{ autor.nachname }}</h1>
+            </article>
+        </div>
+        <div class="tile is-ancestor box is-vertical">
+            <div class="tile is-parent">
+                <div class="tile is-child">
+                    <h3 class="title is-5">Bücher:</h3>
+                </div>
+                <div class="tile is-child">
+                    {% for buch in buecher %}
+                        <a href="{% url "buch_detail" buch.id %}"><h4>{{ buch.titel }}</h4></a>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="tile is-parent">
+                <div class="tile is-child">
+                    <h3 class="title is-5">Biografie:</h3>
+                </div>
+            </div>
+            <div class="tile is-parent">
+                <article class="tile is-child">
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Curabitur laoreet vehicula turpis, sodales elementum tortor rutrum vitae.
+                        Proin faucibus venenatis turpis ut euismod.
+                        Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+                        Etiam id dolor vitae velit maximus pretium. Cras semper odio sed dui convallis,
+                        non pellentesque felis blandit. Maecenas viverra mollis nibh. Aenean quis rutrum risus.
+                        Nulla rhoncus neque ligula. Suspendisse at enim odio. Nunc non molestie mi, et viverra ex.
+                        Pellentesque sit amet ullamcorper libero. Etiam eget eros vestibulum nisl iaculis
+                        tincidunt. Nam dictum aliquam mauris, vel posuere orci condimentum sit amet. Vivamus
+                        ac viverra erat.
+                    </p>
+                    <br>
+                    <p>
+                        Aliquam pharetra tincidunt enim ac euismod. Praesent eu sapien iaculis urna porttitor
+                        elementum eu vel arcu. Aenean faucibus tellus sed condimentum interdum. Donec ultricies
+                        posuere nulla, ut ullamcorper nunc. Aliquam ut suscipit nulla. Nam porta, ante ut
+                        tristique iaculis, mauris risus varius est, at gravida justo eros egestas augue. Quisque
+                        lobortis nisl metus, ut efficitur justo tristique id. Vestibulum porttitor sem a varius
+                        pellentesque. Vivamus tempor nunc sed magna placerat finibus. Cras pharetra tellus in
+                        justo egestas, id condimentum nibh rutrum. Sed eleifend enim vel ipsum ornare malesuada.
+                        Curabitur hendrerit enim vitae metus consectetur, ut tristique eros iaculis. Vivamus
+                        velit dui, sodales ut pretium cursus, faucibus in ex.
+                    </p>
+                </article>
+            </div>
+        </div>
+    {% elif ansicht == "verlag" %}
+        <div class="tile is-ancestor">
+            <article class="tile box">
+                <h1 class="title">{{ verlag.name }}</h1>
+            </article>
+        </div>
+        <div class="tile is-ancestor box is-vertical">
+            <div class="tile is-parent">
+                <div class="tile is-child">
+                    <h3 class="title is-5">Bücher:</h3>
+                </div>
+                <div class="tile is-child">
+                    {% for buch in buecher %}
+                        <a href="{% url "buch_detail" buch.id %}"><h4>{{ buch.titel }}</h4></a>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="tile is-parent">
+                <div class="tile is-child">
+                    <h3 class="title is-5">Adresse:</h3>
+                </div>
+                <div class="tile is-child">
+                    <h4>{{ verlag.strasse }}</h4>
+                    <h4>{{ verlag.plz }} {{ verlag.ort }}</h4>
+                </div>
+            </div>
+            <div class="tile is-parent">
+                <div class="tile is-child">
+                    <h3 class="title is-5">Tel.:</h3>
+                </div>
+                <div class="tile is-child">
+                    <h4>{{ verlag.telefonnummer }}</h4>
+                </div>
+            </div>
+        </div>
+    {% elif ansicht == "nutzer" %}
+        <div class="tile is-ancestor">
+            <article class="tile box">
+                <h1 class="title">{{ nutzer.name }} {{ nutzer.nachname }}</h1>
+            </article>
+        </div>
+        <div class="tile is-ancestor box is-vertical">
+            <div class="tile is-parent">
+                <div class="tile is-child">
+                    <h3 class="title is-5">Ausweis-ID:</h3>
+                </div>
+                <div class="tile is-child">
+                    <h4>{{ nutzer.id }}</h4>
+                </div>
+            </div>
+            <div class="tile is-parent">
+                <div class="tile is-child">
+                    <h3 class="title is-5">Adresse:</h3>
+                </div>
+                <div class="tile is-child">
+                    <h4>{{ nutzer.strasse }}</h4>
+                    <h4>{{ nutzer.plz }}</h4>
+                </div>
+            </div>
+            <div class="tile is-parent">
+                <div class="tile is-child">
+                    <h3 class="title is-5">Bücher:</h3>
+                </div>
+                <div class="tile is-child">
+                    {% for buch, frist in buecher %}
+                        <a href="{% url "buch_detail" buch.buchID.id %}"><h4>{{ buch.buchID }}</h4></a>
+                        <h4> - Frist: {{ frist }}</h4>
+                        <br>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    </div>
+        {% endif %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}

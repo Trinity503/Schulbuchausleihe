@@ -19,19 +19,19 @@
         <p>
             <table>
                 <tr>
-                    <th>AusweisID</th>
-                    <th>Vorname</th>
-                    <th>Nachname</th>
-                    <th>Stra0e</th>
-                    <th>PLZ</th>
+                    <th class="th">AusweisID</th>
+                    <th class="th">Vorname</th>
+                    <th class="th">Nachname</th>
+                    <th class="th">Stra0e</th>
+                    <th class="th">PLZ</th>
                 </tr>
                 {% for user in users %}
                     <tr>
-                        <td>{{ user.ausweisID }}</td>
-                        <td>{{ user.name }}</td>
-                        <td>{{ user.nachname }}</td>
-                        <td>{{ user.strasse }}</td>
-                        <td>{{ user.plz }}</td>
+                        <td class="td">{{ user.ausweisID }}</td>
+                        <td class="td">{{ user.name }}</td>
+                        <td class="td">{{ user.nachname }}</td>
+                        <td class="td">{{ user.strasse }}</td>
+                        <td class="td">{{ user.plz }}</td>
                     </tr>
                 {% endfor %}
             </table>
@@ -47,19 +47,19 @@
         <p>
             <table>
                 <tr>
-                    <th>ISBN</th>
-                    <th>Titel</th>
-                    <th>Autor</th>
-                    <th>Verlag</th>
-                    <th>Genre</th>
+                    <th class="th">ISBN</th>
+                    <th class="th">Titel</th>
+                    <th class="th">Autor</th>
+                    <th class="th">Verlag</th>
+                    <th class="th">Genre</th>
                 </tr>
                 {% for buch in books %}
                     <tr>
-                        <td>{{ buch.isbn }}</td>
-                        <td>{{ buch.titel }}</td>
-                        <td>{{ buch.autor }}</td>
-                        <td>{{ buch.verlag }}</td>
-                        <td>{{ buch.genre }}</td>
+                        <td class="td">{{ buch.isbn }}</td>
+                        <td class="td">{{ buch.titel }}</td>
+                        <td class="td">{{ buch.autor }}</td>
+                        <td class="td">{{ buch.verlag }}</td>
+                        <td class="td">{{ buch.genre }}</td>
                     </tr>
                 {% endfor %}
             </table>
@@ -75,17 +75,17 @@
         <p>
             <table>
                 <tr>
-                    <th>VerlagID</th>
-                    <th>Name</th>
-                    <th>Stra0e</th>
-                    <th>PLZ</th>
+                    <th class="th">VerlagID</th>
+                    <th class="th">Name</th>
+                    <th class="th">Stra0e</th>
+                    <th class="th">PLZ</th>
                 </tr>
                 {% for publisher in publishers %}
                     <tr>
-                        <td>{{ publisher.verlagID }}</td>
-                        <td>{{ publisher.name }}</td>
-                        <td>{{ publisher.strasse }}</td>
-                        <td>{{ publisher.plz }}</td>
+                        <td class="td">{{ publisher.verlagID }}</td>
+                        <td class="td">{{ publisher.name }}</td>
+                        <td class="td">{{ publisher.strasse }}</td>
+                        <td class="td">{{ publisher.plz }}</td>
                     </tr>
                 {% endfor %}
             </table>

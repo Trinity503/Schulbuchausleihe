@@ -1,20 +1,23 @@
-{% extends "nutzer.html" %}
-{% block modal %}
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            ...
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Understood</button>
-          </div>
+{% extends "base.html" %}
+{% block content %}
+<div class="columns is-centered is-half">
+    <form method="post" class="is-half">
+        <div class="field box">
+        {% csrf_token %}
+            {% for field in form %}
+                <div class="control field">
+                {% if field.name == 'autor' %}
+                    <label class="label">{{ field.label }}</label>
+                    <div class="select is-multiple">{{ field }}</div>
+                {% else %}
+                    <label class="label">{{ field.label }}</label>
+                    <div class="control">{{ field }}</div>
+                {% endif %}
+                </div>
+            {% endfor %}
+        <button type="submit" name="update" class="button is-primary is-left" value="{{ id }}">Edit!</button>
+        <button type="button" name="cancel" class="button is-warning is-right" onclick="history.back()">Cancel!</button>
         </div>
-      </div>
-    </div>
+    </form>
+</div>
 {% endblock %}

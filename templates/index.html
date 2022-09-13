@@ -1,8 +1,187 @@
 {% extends "base.html" %}
+{% block navbar %}
+    <a class="navbar-item is-active" href="/">Bücherei</a>
+    <a class="navbar-item" href="{% url "nutzer" %}">Nutzer</a>
+    <a class="navbar-item" href="{% url "buch" %}">Bücher</a>
+    <a class="navbar-item" href="{% url "ausleih" %}">Ausleih</a>
+{% endblock %}
 {% block content %}
-    <form action="{% url "index" %}" method="post">
-        {% csrf_token %}
-        {{ form }}
-        <input type="submit" value="Submit">
+
+<div class="container is-max-widescreen">
+  <div class="row">
+    <div class="col">
+
+    </div>
+   <div class="columns is-centered">
+    <nav class="pagination is-rounded" role="navigation" aria-label="pagination">
+        <ul class="pagination-list">
+        {% if page_obj.has_previous %}
+        <li>
+            <a class="pagination-link" href="?page=1">First</a>
+        </li>
+        <li>
+            <a class="pagination-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+        </li>
+        <li>
+            <span class="pagination-link is-current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+            </span>
+        </li>
+        {% endif %}
+        {% if page_obj.has_next %}
+        <li>
+            <a class="pagination-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+        </li>
+        <li>
+            <a class="pagination-link" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+        </li>
+        {% endif %}
+        </li>
+        </ul>
+    </nav>
+    </div>
+    <div class="col">
+
+    </div>
+  </div>
+<div class="columns">
+<div class="column is-centered">
+    <form method="post">
+    {% csrf_token %}
+    {% block table %}
+        <table  class="table is-striped is-hoverable">
+            <tr class="tr">
+                <th class="th">Buch</th>
+                <th class="th">Nutzer</th>
+                <th class="th">Ausleihdatum</th>
+                <th class="th">Frist</th>
+                <th class="th">Rückgabedatum</th>
+                <th class=" th th__actions">Actions:</th>
+            </tr>
+            {% for ausleih in page_obj %}
+
+            <tr class="tr nutzer__table_row">
+                <td class="td"><a href="{% url 'buch_detail' ausleih.buchID.id %}">{{ ausleih.buchID }}</a></td>
+                <td class="td"><a href="{% url 'nutzer_detail' ausleih.bibliotheksbenutzerID.id %}">{{ ausleih.bibliotheksbenutzerID }}</a></td>
+                <td class="td">{{ ausleih.ausleihdatum }}</td>
+                <td class="td">{{ ausleih.frist }}</td>
+                <td class="td">{{ ausleih.rueckgabedatum }}</td>
+                <td class="td">
+                    <button type="submit" name="rueckgabe" value="{{ ausleih.id }}" class="button is-warning is-rounded is-responsive">Rückgabe!</button>
+                    <button type="submit" class="button is-danger is-rounded is-responsive" name="delete" value="{{ ausleih.id }}">Delete!</button>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% endblock %}
     </form>
+</div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+
+    </div>
+   <div class="columns is-centered">
+        <nav class="pagination is-rounded" role="navigation" aria-label="pagination">
+            <ul class="pagination-list">
+            {% if page_obj.has_previous %}
+            <li>
+                <a class="pagination-link" href="?page=1">First</a>
+            </li>
+            <li>
+                <a class="pagination-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+            </li>
+            <li>
+                <span class="pagination-link is-current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                </span>
+            </li>
+            {% endif %}
+            {% if page_obj.has_next %}
+            <li>
+                <a class="pagination-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+            </li>
+            <li>
+                <a class="pagination-link" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+            </li>
+            {% endif %}
+            </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="col">
+
+    </div>
+  </div>
+</div>
+</div>
+    <form method="post">
+    {% csrf_token %}
+        <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="editModalLabel">New message</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <div class="mb-3 name">
+                    <label for="vorame" class="col-form-label">Vorame:</label>
+                    <input name="edit" type="text" class="form-control" id="vorame">
+                  </div>
+                  <div class="mb-3 nachname">
+                    <label for="nachname" class="col-form-label">Nachname:</label>
+                    <input name="edit" type="text" class="form-control" id="nachname">
+                  </div>
+                  <div class="mb-3 strasse">
+                    <label for="strasse" class="col-form-label">Strasse:</label>
+                    <input name="edit" type="text" class="form-control" id="strasse">
+                  </div>
+                  <div class="mb-3 plz">
+                    <label for="plz" class="col-form-label">PLZ:</label>
+                    <input name="edit" type="text" class="form-control" id="plz">
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" name="edit" class="btn btn-primary sub">Edit!</button>
+              </div>
+            </div>
+          </div>
+        </div>
+    </form>
+    <script>
+        var editModal = document.getElementById('editModal')
+        editModal.addEventListener('show.bs.modal', function (event) {
+            // Button that triggered the modal
+            var button = event.relatedTarget
+            // Extract info from data-bs-* attributes
+            var user_id = button.getAttribute('data-bs-id')
+            var user_name = button.getAttribute('data-bs-name')
+            var user_nachname = button.getAttribute('data-bs-nachname')
+            var user_strasse = button.getAttribute('data-bs-strasse')
+            var user_plz = button.getAttribute('data-bs-plz')
+            // If necessary, you could initiate an AJAX request here
+            // and then do the updating in a callback.
+            //
+            // Update the modal's content.
+            var modalTitle = editModal.querySelector('.modal-title')
+            var modalBodyId = editModal.querySelector('.sub')
+            var modalBodyName = editModal.querySelector('.name input')
+            var modalBodyNachname = editModal.querySelector('.nachname input')
+            var modalBodyStrasse = editModal.querySelector('.strasse input')
+            var modalBodyPlz = editModal.querySelector('.plz input')
+
+            modalTitle.textContent = 'Eintrag für ' + user_name + ' ' + user_nachname + ' editieren.'
+            modalBodyId.value = user_id
+            modalBodyName.value = user_name
+            modalBodyNachname.value = user_nachname
+            modalBodyStrasse.value = user_strasse
+            modalBodyPlz.value = user_plz
+        })
+    </script>
 {% endblock %}

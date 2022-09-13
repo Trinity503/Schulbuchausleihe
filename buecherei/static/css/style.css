@@ -1,12 +1,82 @@
+/* --------- Header --------- */
 
 .header {
     width: 100%;
-    margin-bottom: 75px;
 }
 
+/* --- Navbar --- */
 
 .srh_logo_link {
     max-width: 15%;
     max-height: 100%;
 }
 
+li a .active {
+    color: #DF4807;
+}
+
+li a .nav-link:hover, .nav-item:hover {
+    color: #DF4807;
+}
+
+/* --------- Body --------- */
+
+.main {
+    padding-top: 15px;
+}
+
+/* --- Details Page --- */
+
+.text_right {
+    text-align: right;
+    align-items: end;
+}
+
+.text_left {
+    text-align: left;
+    align-items: start;
+}
+
+.detail__img {
+    max-width: 100%;
+}
+
+/* --- Links --- */
+
+a:link { text-decoration: none; }
+
+
+a:visited { text-decoration: none; }
+
+
+/*a:hover { text-decoration: none; }*/
+
+
+a:active {
+    text-decoration: none;
+    color: #DF4807;
+}
+
+
+/* --- Pagination --- */
+
+/* --- Table --- */
+
+.table {
+    min-width: fit-content;
+    margin: 15px auto;
+}
+
+.td {
+    margin: 0 15px;
+}
+
+/* --- Forms --- */
+
+.nutzer, .autor, .verlag, .buch {
+    width: 95%;
+}
+
+
+
+/* --------- Footer --------- */
