@@ -76,7 +76,16 @@ WSGI_APPLICATION = 'Buecherei_SRH_Django.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+
 DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+
+
+"""DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": os.path.join(BASE_DIR, "db.sqlite3")
@@ -90,7 +99,7 @@ if "DATABASE_URL" in os.environ:
 
     # Enable test database if found in CI environment.
     if "CI" in os.environ:
-        DATABASES["default"]["TEST"] = DATABASES["default"]
+        DATABASES["default"]["TEST"] = DATABASES["default"]"""
 
 
 # Password validation
