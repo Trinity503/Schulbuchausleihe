@@ -2,5 +2,4 @@ asgiref==3.5.2; python_version >= "3.8"
 django-bootstrap-modal-forms==2.2.0
 django==4.1; python_version >= "3.8"
 sqlparse==0.4.2; python_version >= "3.8"
-tzdata==2022.2; sys_platform == "win32" and python_version >= "3.8"
 gununicorn==20.1.0
