@@ -1,1 +1,1 @@
-web: gununicorn Buecherei_SRH_Django.wsgi
+web: gunicorn Buecherei_SRH_Django.wsgi
