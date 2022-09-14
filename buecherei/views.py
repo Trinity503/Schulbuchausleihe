@@ -108,8 +108,11 @@ def buch(request):
     paginator = Paginator(buecher, 25)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-
-    autor = [Autor.objects.get(id=x.id) for x in page_obj.object_list]
+    buch_id = [x for x in page_obj.object_list]
+    buch_autor_id = [buch_id[x].id for x in range(len(buch_id))]
+    autor_id = [x[0] for x in Buch.objects.filter(id__in=buch_autor_id).values_list('autor')]
+    autor_storage = [Autor.objects.filter(id=[x][0]) for x in autor_id]
+    autor = [autor_storage[x][0] for x in range(len(autor_storage))]
     combo = zip(page_obj.object_list, autor)
     return render(request, 'buch.html', {
         "page_obj": page_obj,

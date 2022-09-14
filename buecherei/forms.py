@@ -1,10 +1,8 @@
 from django.forms import ModelForm
 from .models import Bibliotheksbenutzer, Autor, Verlag, Buch, Ausleihe
-from bootstrap_modal_forms.forms import BSModalModelForm
-from bootstrap_modal_forms.mixins import PopRequestMixin, CreateUpdateAjaxMixin
 
 
-class BibliotheksbenutzerForm(PopRequestMixin, CreateUpdateAjaxMixin, ModelForm):
+class BibliotheksbenutzerForm(ModelForm):
     class Meta:
         model = Bibliotheksbenutzer
         fields = ['name', 'nachname', 'strasse', 'plz']
