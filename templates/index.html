@@ -49,7 +49,7 @@
     <form method="post">
     {% csrf_token %}
     {% block table %}
-        <table  class="table is-striped is-hoverable">
+        <table  class="table is-striped is-hoverable box">
             <tr class="tr">
                 <th class="th">Buch</th>
                 <th class="th">Nutzer</th>
@@ -64,7 +64,11 @@
                 <td class="td"><a href="{% url 'buch_detail' ausleih.buchID.id %}">{{ ausleih.buchID }}</a></td>
                 <td class="td"><a href="{% url 'nutzer_detail' ausleih.bibliotheksbenutzerID.id %}">{{ ausleih.bibliotheksbenutzerID }}</a></td>
                 <td class="td">{{ ausleih.ausleihdatum }}</td>
-                <td class="td">{{ ausleih.frist }}</td>
+                {% if not ausleih.frist %}
+                    <td class="td">--</td>
+                {% else %}
+                    <td class="td">{{ ausleih.verbleibend }}</td>
+                {% endif %}
                 <td class="td">{{ ausleih.rueckgabedatum }}</td>
                 <td class="td">
                     <button type="submit" name="rueckgabe" value="{{ ausleih.id }}" class="button is-warning is-rounded is-responsive">Rückgabe!</button>

@@ -6,17 +6,20 @@
     <a class="navbar-item" href="{% url "ausleih" %}">Ausleih</a>
 {% endblock %}
 {% block table %}
-<table  class="table is-striped is-hoverable">
-            <tr>
-                <th class="th">Vorname</th>
-                <th class="th">Nachname</th>
-                <th class="th">Stra0e</th>
-                <th class="th">PLZ</th>
-                <th class="th th__actions">Actions:</th>
-            </tr>
+<table class="table is-striped is-hoverable box">
+    <thead>
+        <tr>
+            <th class="th">Vorname</th>
+            <th class="th">Nachname</th>
+            <th class="th">Stra0e</th>
+            <th class="th">PLZ</th>
+            <th class="th th__actions">Actions:</th>
+        </tr>
+    </thead>
+    <tbody>
             {% for user in page_obj %}
 
-            <tr class="nutzer__table_row">
+            <tr>
                 <td class="td"><a href="{% url 'nutzer_detail' user.id %}">{{ user.name }}</a></td>
                 <td class="td"><a href="{% url 'nutzer_detail' user.id %}">{{ user.nachname }}</a></td>
                 <td class="td">{{ user.strasse }}</td>
@@ -27,5 +30,6 @@
                 </td>
             </tr>
             {% endfor %}
-        </table>
+    </tbody>
+</table>
 {% endblock %}

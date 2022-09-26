@@ -10,7 +10,12 @@
     <form method="post" class="is-half">
         <div class="field box">
         {% csrf_token %}
-            {{ form.as_div }}
+            {% for field in form %}
+                <div class="control field">
+                    <label class="label">{{ field.label }}</label>
+                    <div class="control">{{ field }}</div>
+                </div>
+            {% endfor %}
         <button type="submit" name="ausleih" class="button is-primary is-centered">Submit</button>
         </div>
     </form>

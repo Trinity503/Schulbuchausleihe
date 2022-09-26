@@ -57,7 +57,8 @@ class Buch(models.Model):
 class Ausleihe(models.Model):
     buchID = models.ForeignKey(Buch,on_delete=models.CASCADE)
     bibliotheksbenutzerID = models.ForeignKey(Bibliotheksbenutzer, on_delete=models.CASCADE)
-    frist = models.CharField(max_length=4, default="30")
+    frist = models.IntegerField(default="30", verbose_name="Penis", null=True)
+    verbleibend = models.IntegerField(null=True)
     ausleihdatum = models.DateField(auto_now_add=True)
     rueckgabedatum = models.DateField(null=True, blank=True)
 

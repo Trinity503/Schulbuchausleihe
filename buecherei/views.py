@@ -22,14 +22,19 @@ def index(request):
             rueckgabe = Ausleihe.objects.get(id=rueckgabe_id)
             Buch.objects.filter(id=rueckgabe.buchID.id).update(ausgeliehen=False)
             rueckgabe.rueckgabedatum = date.today()
-            rueckgabe.frist = '--'
+            rueckgabe.frist = None
             rueckgabe.save()
             messages.info(request, 'Das Buch wurde erfolgreich zurückgegeben!', extra_tags='message is-success')
             return redirect(reverse('index'))
         else:
             messages.info(request, 'Das Buch wurde bereits zurückgegeben!', extra_tags='message is-warning')
+    aktuelle_frist = Ausleihe.objects.filter(rueckgabedatum=None).values("ausleihdatum", "frist", "id")
+    new_frist = [date.today() - aktuelle_frist[x]["ausleihdatum"] for x in range(len(aktuelle_frist))]
+    new_frist = [aktuelle_frist[x]["frist"] - new_frist[x].days for x in range(len(aktuelle_frist))]
+    for x in range(len(aktuelle_frist)):
+        Ausleihe.objects.filter(rueckgabedatum=None).filter(id=aktuelle_frist[x]["id"]).update(verbleibend=new_frist[x])
     alle_ausleihe = Ausleihe.objects.all()
-    paginator = Paginator(alle_ausleihe, 25)
+    paginator = Paginator(alle_ausleihe.order_by("frist"), 25)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     return render(request, 'index.html', {
@@ -133,9 +138,9 @@ def ausleih(request):
             messages.info(request, 'Das Buch ist leider nicht verfügbar!', extra_tags='message is-warning')
     elif request.method == 'POST' and not form.is_valid():
         messages.info(request, 'Ups, da fehlt noch was!', extra_tags='message is-danger')
-    return render(request, 'ausleih.html',
-                    {'form': AusleiheForm()},
-                    )
+    return render(request, 'ausleih.html', {
+                            'form': AusleiheForm()
+                            })
 
 def add_autor(request):
     form = AutorForm(request.POST or None)
