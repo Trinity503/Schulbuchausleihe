@@ -2,3 +2,5 @@ asgiref==3.5.2; python_version >= "3.8"
 django==4.1; python_version >= "3.8"
 sqlparse==0.4.2; python_version >= "3.8"
 gunicorn
+django-bootstrap_modal_forms
+
