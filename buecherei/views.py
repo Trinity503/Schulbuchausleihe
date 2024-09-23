@@ -146,7 +146,7 @@ def add_autor(request):
     form = AutorForm(request.POST or None)
     if request.method == 'POST' and form.is_valid():
         form.save()
-        messages.info(request, 'Der Autor wurde erfolgreich hinzugefügt!', extra_tags='message is-success')
+        messages.info(request, 'Der Autor wurde erfolgreich hinzugefügt.', extra_tags='message is-success')
         return redirect(reverse('index'))
     elif request.method == 'POST' and not form.is_valid():
         messages.info(request, 'Ups, da fehlt noch was!', extra_tags='message is-danger')
@@ -156,7 +156,7 @@ def add_buch(request):
     form = BuchForm(request.POST or None)
     if request.method == 'POST' and form.is_valid():
         form.save()
-        messages.info(request, 'Das Buch wurde erfolgreich hinzugefügt!', extra_tags='message is-success')
+        messages.info(request, 'Das Buch wurde erfolgreich hinzugefügt.', extra_tags='message is-success')
         return redirect(reverse('buch'))
     elif request.method == 'POST' and not form.is_valid():
         messages.info(request, 'Ups, da fehlt noch was!', extra_tags='message is-danger')
@@ -166,7 +166,7 @@ def add_buch_isbn(request):
     form = BuchISBNForm(request.POST or None)
     if request.method == 'POST' and form.is_valid():
         form.save()
-        messages.info(request, 'Das Buch wurde erfolgreich hinzugefügt!', extra_tags='message is-success')
+        messages.info(request, 'Das Buch wurde erfolgreich hinzugefügt.', extra_tags='message is-success')
         return redirect(reverse('buch'))
     elif request.method == 'POST' and not form.is_valid():
         messages.info(request, 'Ups, da fehlt noch was!', extra_tags='message is-danger')
@@ -176,7 +176,7 @@ def add_nutzer(request):
     form = BibliotheksbenutzerForm(request.POST or None)
     if request.method == 'POST' and form.is_valid():
         form.save()
-        messages.info(request, 'Der Nutzer wurde erfolgreich hinzugefügt!', extra_tags='message is-success')
+        messages.info(request, 'Der Nutzer wurde erfolgreich hinzugefügt.', extra_tags='message is-success')
         return redirect(reverse('nutzer'))
     elif request.method == 'POST' and not form.is_valid():
         messages.info(request, 'Ups, da fehlt noch was!', extra_tags='message is-danger')
@@ -186,7 +186,7 @@ def add_verlag(request):
     form = VerlagForm(request.POST or None)
     if request.method == 'POST' and form.is_valid():
         form.save()
-        messages.info(request, 'Der Verlag wurde erfolgreich hinzugefügt!', extra_tags='message is-success')
+        messages.info(request, 'Der Verlag wurde erfolgreich hinzugefügt.', extra_tags='message is-success')
         return redirect(reverse('buch'))
     elif request.method == 'POST' and not form.is_valid():
         messages.info(request, 'Ups, da fehlt noch was!', extra_tags='message is-danger')
@@ -222,7 +222,7 @@ def nutzer_detail(request, id):
             remaining = (x.ausleihdatum - date.today()).days + x.frist
             frist.append(f"{remaining} Tage")
         else:
-            frist.append("Rückgabe erfolgt!")
+            frist.append("Rückgabe erfolgt.")
     buecher = zip(buch, frist)
     return render(request, 'detail_view.html', {
         "nutzer": nutzer,

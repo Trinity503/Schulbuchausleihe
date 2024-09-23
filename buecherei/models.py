@@ -35,7 +35,7 @@ class Verlag(models.Model):
         return f"{self.name}"
 
     class Meta:
-        verbose_name_plural = "Verläge"
+        verbose_name_plural = "Verlage"
 
 
 class Buch(models.Model):
