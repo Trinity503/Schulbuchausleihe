@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-nwkn*fa^se#9_!(o&m9)$jeso(fyyx96-1%ji49lttr3nxzrgh'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
@@ -134,8 +134,20 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_ROOT = BASE_DIR / "staticfiles"
-STATIC_URL = "static/"
+#For production use STATIC_ROOT instead of STATICFILES_DIRS
+#STATICFILES_DIRS is used in development and STATIC_ROOT in production,
+#STATICFILES_DIRS and STATIC_ROOT should not have same folder name,
+
+
+import os
+STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, 'static/')
+    ]
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_URL = '/static/'
+
+
+
 
 # STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
