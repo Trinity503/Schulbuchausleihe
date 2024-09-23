@@ -54,13 +54,6 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.CreateModel(
-            name='BuchISBN',
-            fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('isbn', models.IntegerField()),
-            ],
-        ),
-        migrations.CreateModel(
             name='Ausleihe',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
