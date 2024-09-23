@@ -46,6 +46,16 @@ class BuchForm(ModelForm):
         self.fields['jahr'].widget.attrs['class'] = 'control jahr'
         self.fields["autor"].widget.attrs['class'] = 'multiple'
 
+class BuchISBNForm(ModelForm):
+    class Meta:
+        model = Buch
+        fields = ['isbn']
+    
+    def __init__(self, *args, **kwargs):
+        super(BuchISBNForm, self).__init__(*args, **kwargs)
+        self.fields['isbn'].widget.attrs['class'] = 'control isbn'
+
+
 class AusleiheForm(ModelForm):
     class Meta:
         model = Ausleihe

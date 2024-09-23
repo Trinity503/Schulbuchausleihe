@@ -3,17 +3,17 @@
     <a class="navbar-item" href="/">Bücherei</a>
     <a class="navbar-item" href="{% url "nutzer" %}">Nutzer</a>
     <a class="navbar-item is-active" href="{% url "buch" %}">Bücher</a>
-    <a class="navbar-item" href="{% url "ausleih" %}">Ausleih</a>
+    <a class="navbar-item" href="{% url "ausleih" %}">Ausleihe</a>
 {% endblock %}
 {% block table %}
     <table  class="table is-striped is-hoverable box">
         <tr>
             <th class="th">ISBN</th>
             <th class="th">Titel</th>
-            <th class="th">Author</th>
+            <th class="th">Autor</th>
             <th class="th">Genre</th>
             <th class="th">Verlag</th>
-            <th class=" th th__actions">Actions:</th>
+            <th class=" th th__actions">Aktion</th>
         </tr>
         {% for buch, autor in combo %}
         <tr class="nutzer__table_row">
@@ -23,8 +23,8 @@
             <td class="td">{{ buch.genre }}</td>
             <td class="td"><a href="{% url 'verlag' buch.verlag.id %}">{{ buch.verlag.name }}</a></td>
             <td class="td">
-                <button type="submit" class="button is-warning is-rounded is-responsive" name="edit" value="{{ buch.id }}">Edit</button>
-                <button type="submit" class="button is-danger is-rounded is-responsive" name="delete" value="{{ buch.id }}">Delete!</button>
+                <button type="submit" class="button is-warning is-rounded is-responsive" name="edit" value="{{ buch.id }}">Bearbeiten</button>
+                <button type="submit" class="button is-danger is-rounded is-responsive" name="delete" value="{{ buch.id }}">Löschen</button>
             </td>
         </tr>
         {% endfor %}

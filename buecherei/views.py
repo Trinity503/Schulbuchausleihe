@@ -162,6 +162,16 @@ def add_buch(request):
         messages.info(request, 'Ups, da fehlt noch was!', extra_tags='message is-danger')
     return render(request, 'add.html', {'form': BuchForm()})
 
+def add_buch_isbn(request):
+    form = BuchISBNForm(request.POST or None)
+    if request.method == 'POST' and form.is_valid():
+        form.save()
+        messages.info(request, 'Das Buch wurde erfolgreich hinzugefügt!', extra_tags='message is-success')
+        return redirect(reverse('buch'))
+    elif request.method == 'POST' and not form.is_valid():
+        messages.info(request, 'Ups, da fehlt noch was!', extra_tags='message is-danger')
+    return render(request, 'add.html', {'form': BuchISBNForm()})
+
 def add_nutzer(request):
     form = BibliotheksbenutzerForm(request.POST or None)
     if request.method == 'POST' and form.is_valid():

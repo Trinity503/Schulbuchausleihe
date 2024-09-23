@@ -27,6 +27,7 @@ urlpatterns = [
     path('ausleih/', views.ausleih, name='ausleih'),
     path('add_autor/', views.add_autor, name='add_autor'),
     path('add_buch/', views.add_buch, name='add_buch'),
+    path('add_buch_isbn/', views.add_buch, name='add_buch_isbn'),
     path('add_nutzer/', views.add_nutzer, name='add_nutzer'),
     path('add_verlag/', views.add_verlag, name='add_verlag'),
     path('verlag/<int:id>/', views.verlag_detail, name='verlag'),

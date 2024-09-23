@@ -3,7 +3,7 @@
     <a class="navbar-item" href="/">Bücherei</a>
     <a class="navbar-item" href="{% url "nutzer" %}">Nutzer</a>
     <a class="navbar-item" href="{% url "buch" %}">Bücher</a>
-    <a class="navbar-item is-active" href="{% url "ausleih" %}">Ausleih</a>
+    <a class="navbar-item is-active" href="{% url "ausleih" %}">Ausleihe</a>
 {% endblock %}
 {% block content %}
 <div class="columns is-centered is-half">
@@ -16,7 +16,7 @@
                     <div class="control">{{ field }}</div>
                 </div>
             {% endfor %}
-        <button type="submit" name="ausleih" class="button is-primary is-centered">Submit</button>
+        <button type="submit" name="ausleih" class="button is-primary is-centered">Ausleihen</button>
         </div>
     </form>
 </div>

@@ -3,7 +3,7 @@
     <a class="navbar-item is-active" href="/">Bücherei</a>
     <a class="navbar-item" href="{% url "nutzer" %}">Nutzer</a>
     <a class="navbar-item" href="{% url "buch" %}">Bücher</a>
-    <a class="navbar-item" href="{% url "ausleih" %}">Ausleih</a>
+    <a class="navbar-item" href="{% url "ausleih" %}">Ausleihe</a>
 {% endblock %}
 {% block content %}
 
@@ -17,23 +17,23 @@
         <ul class="pagination-list">
         {% if page_obj.has_previous %}
         <li>
-            <a class="pagination-link" href="?page=1">First</a>
+            <a class="pagination-link" href="?page=1">Erste Seite</a>
         </li>
         <li>
-            <a class="pagination-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+            <a class="pagination-link" href="?page={{ page_obj.previous_page_number }}">Vorherige Seite</a>
         </li>
         <li>
             <span class="pagination-link is-current">
-                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                Seite {{ page_obj.number }} von {{ page_obj.paginator.num_pages }}
             </span>
         </li>
         {% endif %}
         {% if page_obj.has_next %}
         <li>
-            <a class="pagination-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+            <a class="pagination-link" href="?page={{ page_obj.next_page_number }}">Nächste Seite</a>
         </li>
         <li>
-            <a class="pagination-link" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+            <a class="pagination-link" href="?page={{ page_obj.paginator.num_pages }}">Letzte Seite</a>
         </li>
         {% endif %}
         </li>
@@ -56,7 +56,7 @@
                 <th class="th">Ausleihdatum</th>
                 <th class="th">Frist</th>
                 <th class="th">Rückgabedatum</th>
-                <th class=" th th__actions">Actions:</th>
+                <th class=" th th__actions">Aktion</th>
             </tr>
             {% for ausleih in page_obj %}
 
@@ -71,8 +71,8 @@
                 {% endif %}
                 <td class="td">{{ ausleih.rueckgabedatum }}</td>
                 <td class="td">
-                    <button type="submit" name="rueckgabe" value="{{ ausleih.id }}" class="button is-warning is-rounded is-responsive">Rückgabe!</button>
-                    <button type="submit" class="button is-danger is-rounded is-responsive" name="delete" value="{{ ausleih.id }}">Delete!</button>
+                    <button type="submit" name="rueckgabe" value="{{ ausleih.id }}" class="button is-warning is-rounded is-responsive">Rückgabe</button>
+                    <button type="submit" class="button is-danger is-rounded is-responsive" name="delete" value="{{ ausleih.id }}">Löschen</button>
                 </td>
             </tr>
             {% endfor %}
@@ -92,10 +92,10 @@
             <ul class="pagination-list">
             {% if page_obj.has_previous %}
             <li>
-                <a class="pagination-link" href="?page=1">First</a>
+                <a class="pagination-link" href="?page=1">Erste Seite</a>
             </li>
             <li>
-                <a class="pagination-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                <a class="pagination-link" href="?page={{ page_obj.previous_page_number }}">Vorherige Seite</a>
             </li>
             <li>
                 <span class="pagination-link is-current">
@@ -105,10 +105,10 @@
             {% endif %}
             {% if page_obj.has_next %}
             <li>
-                <a class="pagination-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+                <a class="pagination-link" href="?page={{ page_obj.next_page_number }}">Nächste Seite</a>
             </li>
             <li>
-                <a class="pagination-link" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+                <a class="pagination-link" href="?page={{ page_obj.paginator.num_pages }}">Letzte Seite</a>
             </li>
             {% endif %}
             </li>
@@ -151,8 +151,8 @@
                 </form>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" name="edit" class="btn btn-primary sub">Edit!</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Schließen</button>
+                <button type="submit" name="edit" class="btn btn-primary sub">Bearbeiten</button>
               </div>
             </div>
           </div>

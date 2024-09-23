@@ -31,13 +31,14 @@
                     <a class="navbar-item" href="/">Bücherei</a>
                     <a class="navbar-item" href="{% url "nutzer" %}">Nutzer</a>
                     <a class="navbar-item" href="{% url "buch" %}">Bücher</a>
-                    <a class="navbar-item" href="{% url "ausleih" %}">Ausleih</a>
+                    <a class="navbar-item" href="{% url "ausleih" %}">Ausleihe</a>
                 {% endblock %}
                   <div class="navbar-item has-dropdown is-hoverable">
                     <a class="navbar-link">Hinzufügen</a>
                     <div class="navbar-dropdown">
                         <a class="navbar-item" href="{% url "add_nutzer" %}">Nutzer</a>
                         <a class="navbar-item" href="{% url "add_buch" %}">Buch</a>
+                        <a class="navbar-item" href="{% url "add_buch_isbn" %}">Buch über ISBN</a>
                         <a class="navbar-item" href="{% url "add_autor" %}">Autor</a>
                         <a class="navbar-item" href="{% url "add_verlag" %}">Verlag</a>
                     </div>
